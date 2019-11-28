@@ -58,12 +58,13 @@
     <!-- / CREATE NEW ITEM -->        </lightning:layoutItem>
     </lightning:layout>
     <!-- / NEW CAMPING FORM -->
-    <!-- If I comment this section I no longer get the server error. -->
+    
     <section class="slds-card__body">
     	<div id="list" class="row">
         <aura:iteration items="{!v.items}" var="item">
-            <c:campingListItem item="{item}"/>
+            <c:campingListItem item="{!item}"/>
             </aura:iteration>
+ 
         </div>
     </section>
 

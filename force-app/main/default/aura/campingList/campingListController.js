@@ -8,14 +8,17 @@
         // If we pass error checking, do some real work
         if(validCamping){
             // Create the new item
-            var newCampingItem = component.get("v.newItem");
-            var campings = component.get("items");
-            var item = JASON.parse(JASON.stringify(newCampingItem));
-            
-            campings.push(item);
-            component.set("v.items",campings);
-            component.set("v.newItem",{ 'sobjectType': 'Camping_Item__c','Name': '','Quantity__c': 0,'Price__c': 0,'Packed__c': false});
-            
+            var newItem = component.get("v.newItem");
+            console.log("Create camping item: " + JSON.stringify(newItem));
+            // helper.createItem(component, newItem);
+            var theCampingItems = component.get("v.items");
+ 
+        // Copy the expense to a new object
+        // THIS IS A DISGUSTING, TEMPORARY HACK
+        var newItem = JSON.parse(JSON.stringify(newItem));
+ 
+        theCampingItems.push(newItem);
+        component.set("v.items", theCampingItems);        
         }
     }
 })
