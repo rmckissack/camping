@@ -1,4 +1,4 @@
-<aura:component>
+<aura:component controller="CampingListController">
         <aura:attribute name="items" type="Camping_Item__c[]"/>
 
         <aura:attribute name="newItem" type="Camping_Item__c"
@@ -8,7 +8,8 @@
                         'Price__c': 0,
                         'Packed__c': false }"/>
 
-    
+                        <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+
     <!-- NEW CAMPING FORM -->
     <lightning:layout>
         <lightning:layoutItem padding="around-small" size="6">

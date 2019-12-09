@@ -1,12 +1,17 @@
 ({
-    // createItem: function(component, newItem) {
-    //     var theCampingItems = component.get("v.items");
- 
-    //     // Copy the expense to a new object
-    //     // THIS IS A DISGUSTING, TEMPORARY HACK
-    //     var newItem = JSON.parse(JSON.stringify(newItem));
- 
-    //     theCampingItems.push(newItem);
-    //     component.set("v.items", theCampingItems);
-    // }
+    createItem: function(component, item) {
+        var action = component.get("c.saveItem");
+        action.setParams({
+            "item": item
+        });
+        action.setCallback(this, function(response){
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                var items = component.get("v.items");
+                items.push(response.getReturnValue());
+                component.set("v.items", items);
+            }
+        });
+       $A.enqueueAction(action);
+    }
 })
